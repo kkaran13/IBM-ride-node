@@ -25,7 +25,7 @@ const paymentSchema = new Schema({
     enum: ["cash", "card", "upi", "wallet"],
     required: true
   },
-  transactionId: {
+  paymentId: {
     type: String,    // external payment gateway ID (like Razorpay/Stripe txn_id)
     unique: true,
     sparse: true
