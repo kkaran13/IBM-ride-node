@@ -1,4 +1,4 @@
-class ApiError extends Error {
+export default class ApiError extends Error {
     constructor(
         statusCode,
         message = 'An error occurred processing your request.',
@@ -20,4 +20,3 @@ class ApiError extends Error {
     }
 }
 
-module.exports = {ApiError}

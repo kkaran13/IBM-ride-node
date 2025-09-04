@@ -46,6 +46,6 @@ paymentSchema.pre("save", function (next) {
   next();
 });
 
-const Payment = model("Payment", paymentSchema);
+const Payment = model("Payments", paymentSchema);
 
 export default Payment;

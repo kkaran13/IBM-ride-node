@@ -1,7 +1,9 @@
-const asyncHandler = (requestHandler) => {
-    return (req,res,next) =>{
-        Promise.resolve(requestHandler(req,res,next)).catch((err)=> next(err));
+export const asyncHandler = (handler) => {
+  return async (req, res, next) => {
+    try {
+      await handler(req, res, next);
+    } catch (err) {
+      next(err); // this passes the error to the global error middleware
     }
-}
-
-module.exports = {asyncHandler};
+  };
+};
