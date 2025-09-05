@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import  {sequelize}  from "../../database/db.mysql.js"; 
+import { sequelize } from "../../database/db.mysql.js";
 
 export const User = sequelize.define(
   "User",
@@ -17,6 +17,11 @@ export const User = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: {
+          msg: "Invalid email format",
+        },
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -24,14 +29,33 @@ export const User = sequelize.define(
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
       unique: true,
+      validate: {
+        isNumeric: {
+          msg: "Phone number must contain only digits",
+        },
+        len: {
+          args: [10, 10],
+          msg: "Phone number must be exactly 10 digits long",
+        },
+      },
     },
     role: {
-      type: DataTypes.ENUM('rider', 'driver'),
+      type: DataTypes.ENUM("rider", "driver"),
       allowNull: false,
       defaultValue: "rider",
+      validate: {
+        isIn: {
+          args: [["rider", "driver"]],
+          msg: "Invalid role. Allowed values are 'rider' or 'driver'.",
+        },
+        notNull: {
+          msg: "Role is required",
+        },
+      },
     },
+
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
