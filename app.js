@@ -1,19 +1,21 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import  {errorHandler}  from "./middlewares/errorHandler.middleware.js";
+import { errorHandler } from "./middlewares/errorHandler.middleware.js";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
 // Import All Routes
-import userRoute from "./routes/user.routes.js"
+
+import userRoute from "./routes/user.routes.js";
 import vehicleRoute from "./routes/vehicle.routes.js";
 
-app.use("/api/v1/users",userRoute);
+app.use("/api/v1/users", userRoute);
 app.use("/api/v1/vehicles", vehicleRoute);
 
+// global error handling
+
 app.use(errorHandler)
-export default app; 
+export default app;
