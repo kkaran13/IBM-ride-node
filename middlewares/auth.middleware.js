@@ -23,3 +23,10 @@ export const authenticateJWT = (req, res, next) => {
     return next(new ApiError(401, "Invalid or expired token"));
   }
 };
+
+export const isDriver = (req, res, next) => {
+  if (req.user?.role !== "driver") {
+    return next(new ApiError(403, "Only drivers can perform this action"));
+  }
+  next();
+};
