@@ -6,7 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const router = express.Router();
 
-// 🚘 Protected routes
+// Protected routes
 router.post("/", authenticateJWT, asyncHandler(VehicleController.createVehicle));
 router.get("/", authenticateJWT, asyncHandler(VehicleController.getAllVehicles));
 router.get("/:id", authenticateJWT, asyncHandler(VehicleController.getVehicleById));
