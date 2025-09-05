@@ -57,6 +57,14 @@ class UserController {
   // });
 
   deleteUser = asyncHandler(async (req, res) => {
+    const requestedId = req.params.id;
+    const loggedInUserId = String(req.user.user_id);
+
+    if (requestedId !== loggedInUserId) {
+      return res
+        .status(403)
+        .json(new ApiResponse(403, null, "Forbidden: You can only delete your own profile"));
+    }
     const result = await UserService.deleteUser(req.params.id);
     res.status(200).json(new ApiResponse(200, result));
   });
