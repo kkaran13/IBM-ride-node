@@ -16,11 +16,14 @@ const User = sequelize.define(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        name: "unique_email",
+        msg: "Email must be unique"
+      },
       validate: {
         isEmail: {
-          msg: "Invalid email format",
-        },
+          msg: "Invalid email format"
+        }
       },
     },
     password: {
@@ -29,15 +32,18 @@ const User = sequelize.define(
     },
     phone: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
+      unique: {
+        name: "unique_phone",
+        msg: "Phone must be unique"
+      },
       validate: {
         isNumeric: {
-          msg: "Phone number must contain only digits",
+          msg: "Phone must contain only digits"
         },
         len: {
           args: [10, 10],
-          msg: "Phone number must be exactly 10 digits long",
+          msg: "Phone must be exactly 10 digits"
         },
       },
     },
