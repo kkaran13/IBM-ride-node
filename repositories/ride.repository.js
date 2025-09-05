@@ -1,51 +1,70 @@
 import Ride from "../models/mysqlmodels/ride.model.js";
+import { Op } from "sequelize";
 
 class RideRepository {
-  async createRide(data) {
-    return await Ride.create({
-      rider_id: data.rider_id,
-      driver_id: data.driver_id,
-      vehicle_id: data.vehicle_id,
-      pickup_location: data.pickup_location,
-      drop_location: data.drop_location,
-      status: data.status || "pending",
-      fare: data.fare || 0.0,
-    });
+  async create(data) {
+    return await Ride.create(data);
   }
 
-  async getAll() {
-    return await Ride.findAll({
-      include: [
-        { model: Ride.associations.rider?.target, as: "rider" },
-        { model: Ride.associations.driver?.target, as: "driver" },
-        { model: Ride.associations.vehicle?.target, as: "vehicle" },
-      ],
-    });
-  }
   async findById(id) {
-    return await Ride.findByPk(id, {
-      include: [
-        { model: Ride.associations.rider?.target, as: "rider" },
-        { model: Ride.associations.driver?.target, as: "driver" },
-        { model: Ride.associations.vehicle?.target, as: "vehicle" },
-      ],
-    });
+    return await Ride.findByPk(id);
   }
+
   async updateStatus(id, status) {
     const ride = await this.findById(id);
     if (!ride) return null;
     return await ride.update({ status });
   }
 
-  async findOngoingByDriver(driver_id) {
+  // Rider-specific
+  async findOngoingByRider(rider_id) {
     return await Ride.findOne({
-      where: { driver_id, status: "in_progress" },
+      where: { rider_id, status: { [Op.in]: ["pending", "in_progress"] } }
     });
   }
 
-  // async deleteRide(id) {
-  //   return await Ride.destroy({ where: { ride_id: id } });
-  // }
+  // Driver-specific
+  async findOngoingByDriver(driver_id) {
+    return await Ride.findOne({
+      where: { driver_id, status: { [Op.in]: ["pending", "in_progress"] } }
+    });
+  }
+
+  async getPendingRides() {
+    return await Ride.findAll({ where: { status: "pending" } });
+  }
+
+  async getOngoingRidesByDriver(driver_id) {
+    return await Ride.findAll({
+      where: { driver_id, status: { [Op.in]: ["in_progress"] } },
+      order: [["createdAt", "DESC"]]
+    });
+  }
+
+  async getRideHistoryByDriver(driver_id) {
+    return await Ride.findAll({
+      where: { driver_id, status: { [Op.in]: ["completed", "cancelled"] } },
+      order: [["createdAt", "DESC"]]
+    });
+  }
+
+  async getRidesByRider(rider_id) {
+    return await Ride.findAll({
+      where: { rider_id },
+      order: [["createdAt", "DESC"]]
+    });
+  }
+
+  async getRidesByDriver(driver_id) {
+    return await Ride.findAll({
+      where: { driver_id },
+      order: [["createdAt", "DESC"]]
+    });
+  }
+
+  async getAll() {
+    return await Ride.findAll({ order: [["createdAt", "DESC"]] });
+  }
 }
 
 export default new RideRepository();
