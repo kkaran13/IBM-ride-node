@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../../database/db.mysql.js";
 
-export const User = sequelize.define(
+const User = sequelize.define(
   "User",
   {
     user_id: {
@@ -66,3 +66,5 @@ export const User = sequelize.define(
     tableName: "users",
   }
 );
+
+export default User

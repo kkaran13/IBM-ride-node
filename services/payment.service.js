@@ -1,26 +1,39 @@
 import PaymentRepository from "../repositories/payment.repository.js";
 import ApiError from "../utils/ApiError.js";
+import Ride from "../models/mysqlmodels/ride.model.js";
+import Payment from "../models/mongodbmodels/payment.model.js";
 
 class PaymentService {
-  async createPayment(data, user) {
-    const { ride_id, rider_id, amount, method, paymentId } = data;
+static async createPayment(data, user) {
+    const { ride_id, amount, method, paymentId } = data;
 
-    if (!ride_id || !rider_id || !amount || !method) {
-      throw new ApiError(400, "Missing required fields");
+    const ride = await Ride.findByPk(ride_id);
+    if (!ride) throw new ApiError(404, "Ride not found");
+
+    if (ride.rider_id !== user.user_id && user.role !== "admin") {
+      throw new ApiError(403, "Not allowed to pay for this ride");
     }
 
-    // only allow logged-in rider to create their own payment (or admin)
-    if (user.user_id !== rider_id && user.role !== "admin") {
-      throw new ApiError(403, "You are not allowed to create this payment");
-    }
-
-    return await PaymentRepository.create({
+    const payment = await Payment.create({
       ride_id,
-      rider_id,
+      rider_id: ride.rider_id,
       amount,
       method,
       paymentId,
     });
+
+    return payment;
+  }
+
+  static async getPaymentById(paymentId, user) {
+    const payment = await Payment.findById(paymentId);
+    if (!payment) throw new ApiError(404, "Payment not found");
+
+    if (payment.rider_id !== user.user_id && user.role !== "admin") {
+      throw new ApiError(403, "Not allowed to access this payment");
+    }
+
+    return payment;
   }
 
   async getPaymentById(id, user) {

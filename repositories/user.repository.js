@@ -1,4 +1,4 @@
-import {User} from "../models/mysqlmodels/user.model.js";
+import User from "../models/mysqlmodels/user.model.js";
 import bcrypt from "bcrypt";
 
 class UserRepository {
