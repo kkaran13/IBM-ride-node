@@ -22,7 +22,15 @@ class RideRepository {
       ],
     });
   }
-
+  async findById(id) {
+    return await Ride.findByPk(id, {
+      include: [
+        { model: Ride.associations.rider?.target, as: "rider" },
+        { model: Ride.associations.driver?.target, as: "driver" },
+        { model: Ride.associations.vehicle?.target, as: "vehicle" },
+      ],
+    });
+  }
   async updateStatus(id, status) {
     const ride = await this.findById(id);
     if (!ride) return null;

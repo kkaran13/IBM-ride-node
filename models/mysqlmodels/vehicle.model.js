@@ -31,6 +31,6 @@ const Vehicle = sequelize.define(
 
 // 🚖 Association
 Vehicle.belongsTo(User, { foreignKey: "driver_id", as: "driver" });
-User.hasMany(Vehicle, { foreignKey: "driver_id", as: "vehicles" });
+User.hasMany(Vehicle, { foreignKey: "driver_id", as: "vehicles",  onDelete: "CASCADE", onUpdate: "CASCADE" });
 
 export default Vehicle;
