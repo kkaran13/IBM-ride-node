@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../database/db.mysql.js";
-import User from "./user.model.js";
+import { sequelize } from "../../database/db.mysql.js";
+import {User} from "./user.model.js";
 
 const Vehicle = sequelize.define(
   "Vehicle",
