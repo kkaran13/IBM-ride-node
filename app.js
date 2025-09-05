@@ -9,8 +9,13 @@ app.use(cookieParser());
 
 
 // Import All Routes
-import userRoute from "./routes/user.routes.js"
+import userRoute from "./routes/user.routes.js";
+import vehicleRoute from "./routes/vehicle.routes.js";
+
 
 app.use("/api/v1/users",userRoute);
+app.use("/api/v1/vehicles", vehicleRoute);
+
+// global error handling
 app.use(errorHandler)
-export default app; 
+export default app;
