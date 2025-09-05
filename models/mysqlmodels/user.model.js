@@ -1,6 +1,5 @@
-// models/user.model.js
 import { DataTypes } from "sequelize";
-import  {sequelize}  from "../../database/db.mysql.js"; // Sequelize instance
+import  {sequelize}  from "../../database/db.mysql.js"; 
 
 export const User = sequelize.define(
   "User",
@@ -21,16 +20,17 @@ export const User = sequelize.define(
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false, // password is required
+      allowNull: false,
     },
     phone: {
       type: DataTypes.STRING,
       allowNull: true,
+      unique: true,
     },
     role: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('rider', 'driver'),
       allowNull: false,
-      defaultValue: "user",
+      defaultValue: "rider",
     },
     created_at: {
       type: DataTypes.DATE,
@@ -38,7 +38,7 @@ export const User = sequelize.define(
     },
   },
   {
-    timestamps: false, // we already have created_at
+    timestamps: false,
     tableName: "users",
   }
 );
