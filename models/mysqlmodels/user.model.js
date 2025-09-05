@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../../database/db.mysql.js"; 
+import { sequelize } from "../../database/db.mysql.js";
 
 export const User = sequelize.define(
   "User",
@@ -45,7 +45,17 @@ export const User = sequelize.define(
       type: DataTypes.ENUM("rider", "driver"),
       allowNull: false,
       defaultValue: "rider",
+      validate: {
+        isIn: {
+          args: [["rider", "driver"]],
+          msg: "Invalid role. Allowed values are 'rider' or 'driver'.",
+        },
+        notNull: {
+          msg: "Role is required",
+        },
+      },
     },
+
     created_at: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
