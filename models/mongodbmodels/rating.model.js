@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import {Schema,model} from "mongoose";
 
-const ratingSchema = new mongoose.Schema({
+const ratingSchema = new Schema({
   ride_id: {
     type: Number,   // reference to MySQL ride.ride_id
     required: true,
@@ -31,6 +31,6 @@ const ratingSchema = new mongoose.Schema({
   }
 });
 
-const Rating = mongoose.model("Rating", ratingSchema);
+const Rating = model("Rating", ratingSchema);
 
 export default Rating;

@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../../database/db.mysql.js";
-import {User} from "./user.model.js";
+import User from "./user.model.js";
 
 const Vehicle = sequelize.define(
   "Vehicle",
@@ -31,6 +31,6 @@ const Vehicle = sequelize.define(
 
 // 🚖 Association
 Vehicle.belongsTo(User, { foreignKey: "driver_id", as: "driver" });
-User.hasMany(Vehicle, { foreignKey: "driver_id", as: "vehicles" });
+User.hasMany(Vehicle, { foreignKey: "driver_id", as: "vehicles",  onDelete: "CASCADE", onUpdate: "CASCADE" });
 
 export default Vehicle;

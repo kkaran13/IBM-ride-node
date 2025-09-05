@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../database/db.mysql.js";
+import { sequelize } from "../../database/db.mysql.js";
 import User from "./user.model.js";
 import Vehicle from "./vehicle.model.js";
 

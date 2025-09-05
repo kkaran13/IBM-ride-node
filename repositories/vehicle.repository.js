@@ -1,5 +1,5 @@
 import Vehicle from "../models/mysqlmodels/vehicle.model.js";
-import { User } from "../models/mysqlmodels/user.model.js";
+import  User  from "../models/mysqlmodels/user.model.js";
 
 class VehicleRepository {
     // CREATE vehicle (only if driver exists & role is driver)
