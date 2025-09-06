@@ -61,6 +61,14 @@ class RideRepository {
       order: [["createdAt", "DESC"]]
     });
   }
+  
+  async findByRider(rider_id) {
+    return this.getRidesByRider(rider_id);
+  }
+
+  async findByDriver(driver_id) {
+    return this.getRidesByDriver(driver_id);
+  }  
 
   async getAll() {
     return await Ride.findAll({ order: [["createdAt", "DESC"]] });

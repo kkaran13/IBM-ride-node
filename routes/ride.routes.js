@@ -13,7 +13,7 @@ router.get("/listrides", authenticateJWT, asyncHandler(RideController.listRides)
 
 router.get("/:id", authenticateJWT, asyncHandler(RideController.getRide));
 
-router.patch("/:id/status", authenticateJWT, asyncHandler(RideController.updateStatus));
+router.patch("/:id/status", authenticateJWT, authorizeRole("driver"), asyncHandler(RideController.updateStatus));
 
 // ---------------- Driver Routes ----------------
 

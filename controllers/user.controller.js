@@ -46,7 +46,6 @@ class UserController {
         .status(403)
         .json(new ApiResponse(403, null, "Forbidden: You can only update your own profile"));
     }
-
     const user = await UserService.updateUser(requestedId, req.body);
     res.status(200).json(new ApiResponse(200, user, "User updated successfully"));
   });
