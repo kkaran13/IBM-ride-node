@@ -32,7 +32,7 @@ class PaymentService {
   }
 
   async getPaymentById(id, user) {
-    const payment = await PaymentRepository.findOne(id);
+    const payment = await PaymentRepository.findByPaymentId(id);
     if (!payment) throw new ApiError(404, "Payment not found");
 
     if (user.user_id !== payment.rider_id && user.role !== "rider") {
