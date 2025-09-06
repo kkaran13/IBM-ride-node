@@ -11,6 +11,11 @@ class RatingService {
       throw new ApiError(400, "ride_id and rating are required");
     }
 
+    const ratingExist = await RatingRepository.findByRide(data.ride_id)
+    if (ratingExist) {
+      throw new ApiError(400,"rating already Exist")
+    }
+
     const ride = await RideRepository.findById(data.ride_id);
     if (!ride) {
       throw new ApiError(404, "Ride not found");
