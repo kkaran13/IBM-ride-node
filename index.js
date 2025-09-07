@@ -14,7 +14,7 @@ async function startServer() {
     console.log("MySQL connected successfully via Sequelize");
 
     // Sync models if needed (optional: force = true will drop & recreate tables)
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     console.log("Sequelize models synced with MySQL");
 
     // Start server only after both DBs are ready

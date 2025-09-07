@@ -5,8 +5,8 @@ class PaymentRepository {
     return await Payment.create(paymentData);
   }
 
-  async findById(id) {
-    return await Payment.findById(id);
+  async findByPaymentId(paymentId) {
+    return await Payment.findOne({ paymentId });
   }
 
   async update(payment) {
@@ -16,6 +16,11 @@ class PaymentRepository {
   async findByRider(rider_id) {
     return await Payment.find({ rider_id });
   }
+
+  async findByRideId(ride_id) {
+    return await Payment.findOne({ ride_id });
+  }
+
 }
 
 export default new PaymentRepository();

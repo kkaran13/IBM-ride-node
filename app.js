@@ -13,11 +13,13 @@ import userRoute from "./routes/user.routes.js";
 import vehicleRoute from "./routes/vehicle.routes.js";
 import paymentRoute from "./routes/payment.routes.js"
 import ratingRoute from "./routes/rating.routes.js"
+import rideRoute from "./routes/ride.routes.js"
 
 app.use("/api/v1/users", userRoute);
 app.use("/api/v1/vehicles", vehicleRoute);
-app.use("/api/v1/payment", paymentRoute);
-app.use("/api/v1/rating", ratingRoute)
+app.use("/api/v1/rides", rideRoute);
+app.use("/api/v1/payments", paymentRoute);
+app.use("/api/v1/ratings", ratingRoute)
 
 
 // global error handling

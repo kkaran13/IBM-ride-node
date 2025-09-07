@@ -18,9 +18,11 @@ class PaymentController {
   });
 
   updatePaymentStatus = asyncHandler(async (req, res) => {
+    const {status} = req.body || {}
+    
     const payment = await PaymentService.updatePaymentStatus(
       req.params.id,
-      req.body.status,
+      status,
       req.user
     );
     return res

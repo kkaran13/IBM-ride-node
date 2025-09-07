@@ -17,11 +17,11 @@ const Ride = sequelize.define(
     },
     driver_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     vehicle_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     pickup_location: DataTypes.STRING,
     drop_location: DataTypes.STRING,
