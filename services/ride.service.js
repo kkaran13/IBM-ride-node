@@ -5,7 +5,7 @@ import ApiError from "../utils/ApiError.js";
 
 class RideService {
 
-  // ---------------- Rider Methods ----------------
+  // Ride Methods
   async createRide(data, rider_id) {
     const { pickup_location, drop_location, fare } = data;
 
@@ -34,7 +34,7 @@ class RideService {
     });
   }
 
-  // ---------------- Driver Methods ----------------
+  // Driver Methods 
   async getPendingRidesForDriver() {
     return await RideRepository.getPendingRides();
   }
@@ -84,8 +84,7 @@ class RideService {
     return await RideRepository.getRideHistoryByDriver(driver_id);
   }
 
-// ------- General----------------------------
-
+// General
   async getRide(ride_id) {
     const ride = await RideRepository.findById(ride_id);
     if (!ride) throw new ApiError(404, "Ride not found");

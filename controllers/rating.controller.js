@@ -1,4 +1,3 @@
-// controllers/rating.controller.js
 import RatingService from "../services/rating.service.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";

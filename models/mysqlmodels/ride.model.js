@@ -44,7 +44,7 @@ const Ride = sequelize.define(
   }
 );
 
-// 🛺 Associations
+// Associations
 Ride.belongsTo(User, { foreignKey: "rider_id", as: "rider" });
 Ride.belongsTo(User, { foreignKey: "driver_id", as: "driver" });
 Ride.belongsTo(Vehicle, { foreignKey: "vehicle_id", as: "vehicle" });

@@ -1,4 +1,3 @@
-// services/rating.service.js
 import RatingRepository from "../repositories/rating.repository.js";
 import RideRepository from "../repositories/ride.repository.js";
 import PaymentRepository from "../repositories/payment.repository.js";

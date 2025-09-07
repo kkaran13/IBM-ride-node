@@ -1,11 +1,15 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "./middlewares/errorHandler.middleware.js";
+import { swaggerUi, swaggerSpec } from "./docs/swagger.js";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Swagger docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Import All Routes
 

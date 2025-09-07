@@ -3,7 +3,6 @@ import RideService from "../services/ride.service.js";
 import ApiResponse from "../utils/ApiResponse.js";
 
 class RideController {
-  // ---------------- Rider Routes ----------------
   createRide = asyncHandler(async (req, res) => {
     const ride = await RideService.createRide(req.body, req.user.user_id);
     res.status(201).json(new ApiResponse(201, { rideId: ride.ride_id }, "Ride created successfully"));

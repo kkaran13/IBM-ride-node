@@ -1,4 +1,3 @@
-
 import Rating from "../models/mongodbmodels/rating.model.js";
 
 class RatingRepository {
