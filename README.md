@@ -114,9 +114,7 @@ A comprehensive ride-sharing application backend built with Node.js, featuring d
 - **Files**: Server implementation
 - **Implementation**: Async operations, database connections, HTTP handling
 
-## 📁 Project Structure
-
-\`\`\`
+<pre>
 ├── app.js                          # Express app configuration
 ├── index.js                        # Server entry point
 ├── package.json                     # Dependencies and scripts
@@ -149,7 +147,7 @@ A comprehensive ride-sharing application backend built with Node.js, featuring d
 │   └── db.mysql.js
 └── utils/                          # Utility functions
     └── asyncHandler.js
-\`\`\`
+</pre>
 
 ## 🔧 Installation & Setup
 
@@ -207,25 +205,25 @@ The server will start on `http://localhost:3000`
 ## 📚 API Endpoints
 
 ### **User Management**
-\`\`\`
+<pre>
 POST   /api/users/register     # Register new user
 POST   /api/users/login        # User login
 GET    /api/users/:id          # Get user profile (Protected)
 PUT    /api/users/:id          # Update user profile (Protected)
 DELETE /api/users/:id          # Delete user (Protected)
-\`\`\`
+</pre>
 
 ### **Vehicle Management**
-\`\`\`
+<pre>
 POST   /api/vehicles           # Add vehicle (Protected)
 GET    /api/vehicles           # List vehicles (Protected)
 GET    /api/vehicles/:id       # Get vehicle details (Protected)
 PUT    /api/vehicles/:id       # Update vehicle (Protected)
 DELETE /api/vehicles/:id       # Delete vehicle (Protected)
-\`\`\`
+</pre>
 
 ### **Ride Management**
-\`\`\`
+<pre>
 POST   /api/rides              # Create ride (Protected)
 GET    /api/rides/listrides    # List rides (Protected)
 GET    /api/rides/:id          # Get ride details (Protected)
@@ -236,21 +234,21 @@ GET    /api/rides/driver/pending    # Get pending rides (Driver only)
 POST   /api/rides/driver/:id/accept # Accept ride (Driver only)
 GET    /api/rides/driver/ongoing    # Get ongoing rides (Driver only)
 GET    /api/rides/driver/history    # Get ride history (Driver only)
-\`\`\`
+</pre>
 
 ### **Payment Management**
-\`\`\`
+<pre>
 POST   /api/payments           # Process payment (Protected)
 GET    /api/payments           # List payments (Protected)
 GET    /api/payments/:id       # Get payment details (Protected)
-\`\`\`
+</pre>
 
 ### **Rating System**
-\`\`\`
+<pre>
 POST   /api/ratings            # Submit rating (Protected)
 GET    /api/ratings            # List ratings (Protected)
 GET    /api/ratings/:id        # Get rating details (Protected)
-\`\`\`
+</pre>
 
 ## 🔐 Authentication
 
@@ -299,3 +297,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 - Input validation and sanitization
 
 **Built with ❤️ using Node.js and modern JavaScript practices**
+
