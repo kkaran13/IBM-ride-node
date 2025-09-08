@@ -7,7 +7,7 @@ import { authorizeRole } from "../middlewares/role.middleware.js";
 
 const router = Router();
 
-router.use(authenticateJWT); // protect all routes
+// router.use(authenticateJWT);
 
 router.post("/", authenticateJWT  ,authorizeRole("rider"), asyncHandler(RatingController.createRating));
 router.get("/:id",authenticateJWT , authorizeRole("rider") , asyncHandler(RatingController.getRatingById));

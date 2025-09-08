@@ -16,13 +16,13 @@ import ratingRoute from "./routes/rating.routes.js"
 import rideRoute from "./routes/ride.routes.js"
 
 
-app.use("/api/v1/users",userRoute);
-app.use("/api/v1/vehicles", vehicleRoute);
-app.use("/api/v1/rides", rideRoute);
-app.use("/api/v1/payments", paymentRoute);
-app.use("/api/v1/ratings", ratingRoute)
-
+app.use("/api/v1/users",userRoute); //User Routes
+app.use("/api/v1/vehicles", vehicleRoute); //Vehicle Routes
+app.use("/api/v1/rides", rideRoute); //rides Routes
+app.use("/api/v1/payments", paymentRoute); //payment routes
+app.use("/api/v1/ratings", ratingRoute); //ratings routes
 
 // global error handling
-app.use(errorHandler)
+app.use(errorHandler);
+
 export default app;
