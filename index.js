@@ -5,6 +5,7 @@ import { sequelize } from "./database/db.mysql.js";
 
 
 dotenv.config();
+// console.log(dotenv.config());
 
 async function startServer() {
   try {
@@ -14,11 +15,9 @@ async function startServer() {
     await sequelize.authenticate(); // test MySQL connection
     console.log("MySQL connected successfully via Sequelize");
 
-    // Sync models if needed (optional: force = true will drop & recreate tables)
     await sequelize.sync();
     console.log("Sequelize models synced with MySQL");
 
-    // Start server only after both DBs are ready
     const PORT = process.env.PORT || 8000;
     app.listen(PORT, () => {
       console.log(`Server running at http://localhost:${PORT}`);

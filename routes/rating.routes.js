@@ -6,7 +6,7 @@ import { authorizeRole } from "../middlewares/role.middleware.js";
 
 const router = Router();
 
-router.use(authenticateJWT); // protect all routes
+// router.use(authenticateJWT);
 
 /**
  * @swagger

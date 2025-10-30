@@ -22,7 +22,7 @@ class RatingService {
 
     const { rider_id, driver_id ,status} = ride;
     
-    if (user.user_id !== rider_id && user.role !== "admin") {
+    if (user.user_id !== rider_id) {
       throw new ApiError(403, "You are not allowed to rate this ride");
     }
 
@@ -33,7 +33,7 @@ class RatingService {
     const payment = await PaymentRepository.findByRideId(data.ride_id)
 
     if(payment.status !== "completed") {
-      throw new ApiError(403 , "You can't rate a ride withour completing payment...")
+      throw new ApiError(403 , "You can't rate a ride without completing payment...")
     }
 
     const ratingDoc = {
@@ -70,7 +70,7 @@ class RatingService {
     console.log(rating);
     if (!rating) throw new ApiError(404, "Rating not found");
 
-    if (user.user_id !== rating.rider_id && user.role !== "admin") {
+    if (user.user_id !== rating.rider_id) {
       throw new ApiError(403, "You are not allowed to update this rating");
     }
 
